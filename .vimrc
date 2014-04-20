@@ -24,15 +24,15 @@ let mapleader=","
 let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:NERDTreeDirArrows=0
 set laststatus=2
-let g:ctrlp_extensions = ['funky']
 nnoremap <Leader>ff :CtrlPFunky<Cr>
 nnoremap <Leader>fF :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-noremap <C-b> :CtrlPBuffer<Cr>
-noremap <C-m> :CtrlPMRU<Cr>
+noremap <Leader>fb :CtrlPBuffer<Cr>
+noremap <Leader>fm :CtrlPMRU<Cr>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_extensions = ['funky']
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:20'
 let g:ctrlp_open_multiple_files = '3vjr'
 let g:ctrlp_custom_ignore = {
