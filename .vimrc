@@ -1,5 +1,6 @@
 set nocompatible
 filetype off
+filetype plugin indent on
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -9,7 +10,7 @@ Bundle 'L9'
 "Bundle 'FuzzyFinder'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'mileszs/ack.vim'
 Bundle 'https://github.com/vim-scripts/project.tar.gz.git'
 Bundle 'https://github.com/scrooloose/nerdtree.git'
@@ -18,7 +19,12 @@ Bundle 'https://github.com/jaromero/vim-monokai-refined.git'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kshenoy/vim-signature'
+Bundle 'majutsushi/tagbar'
+"Bundle 'xolox/vim-lua-inspect'
+"Bundle 'vim-misc'
 
+"ctags
+let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
 
 let mapleader=","
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -41,7 +47,6 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_working_path_mode = 0
 
-filetype plugin indent on
 
 set encoding=utf-8
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
@@ -102,6 +107,11 @@ nmap <C-h> <C-W>h
 nmap <C-j> <C-W>j 
 nmap <C-k> <C-W>k 
 
+imap <C-l> <ESC>la
+imap <C-h> <ESC>ha
+imap <C-j> <ESC>ja
+imap <C-k> <ESC>ka
+
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 map <C-n> :NERDTreeTabsToggle<CR>
@@ -137,6 +147,7 @@ set t_vb=
 "不要备份文件
 set nobackup
 set nowb
+set noswapfile
 
 "开启行号
 set number
@@ -145,3 +156,4 @@ set smarttab
 "set guifont=Inconsolata:h13
 let g:Powerline_symbols = 'fancy'
 set guifont=Inconsolata\ for\ Powerline:h13
+"set guifont=Source\ Code\ Pro:h12
