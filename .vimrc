@@ -20,6 +20,9 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kshenoy/vim-signature'
 Bundle 'majutsushi/tagbar'
+"Bundle 'sickill/vim-monokai'
+"Bundle 'hukl/Smyck-Color-Scheme'
+Bundle 'nanotech/jellybeans.vim'
 "Bundle 'xolox/vim-lua-inspect'
 "Bundle 'vim-misc'
 
@@ -56,11 +59,13 @@ set fileencodings=utf-8,ucs-bom,chinese
 set langmenu=zh_CN.UTF-8
 
 "设置语法高亮
-syntax enable
 syntax on
 
 "设置配色方案
-colorscheme Monokai-Refined
+"colorscheme Monokai-Refined
+"colorscheme smyck
+colorscheme jellybeans
+"colorscheme Monokai-Refined
 
 "可以在buffer的任何地方使用鼠标
 set mouse=a
@@ -157,3 +162,78 @@ set smarttab
 let g:Powerline_symbols = 'fancy'
 set guifont=Inconsolata\ for\ Powerline:h13
 "set guifont=Source\ Code\ Pro:h12
+
+
+func! CompileGcc() "for c
+    exec "w"
+    let compilecmd="!gcc "
+    let compileflag="-o %< "
+    if search("mpi\.h") != 0
+        let compilecmd = "!mpicc "
+    endif
+    if search("glut\.h") != 0
+        let compileflag .= " -lglut -lGLU -lGL "
+    endif
+    if search("cv\.h") != 0
+        let compileflag .= " -lcv -lhighgui -lcvaux "
+    endif
+    if search("omp\.h") != 0
+        let compileflag .= " -fopenmp "
+    endif
+    if search("math\.h") != 0
+        let compileflag .= " -lm "
+    endif
+    exec compilecmd." % ".compileflag
+endfunc
+
+func! CompileGpp() "for c++
+    exec "w"
+    let compilecmd="!g++ "
+    let compileflag="-o %< "
+    if search("mpi\.h") != 0
+        let compilecmd = "!mpic++ "
+    endif
+    if search("glut\.h") != 0
+        let compileflag .= " -lglut -lGLU -lGL "
+    endif
+    if search("cv\.h") != 0
+        let compileflag .= " -lcv -lhighgui -lcvaux "
+    endif
+    if search("omp\.h") != 0
+        let compileflag .= " -fopenmp "
+    endif
+    if search("math\.h") != 0
+        let compileflag .= " -lm "
+    endif
+    exec compilecmd." % ".compileflag
+endfunc
+
+func! CompileCode()
+        exec "w"
+        if &filetype == "cpp"
+                exec "call CompileGpp()"
+        elseif &filetype == "c"
+                exec "call CompileGcc()"
+        endif
+endfunc
+
+func! RunResult()
+        exec "w"
+        if search("mpi\.h") != 0
+            exec "!mpirun -np 4 ./%<"
+        elseif &filetype == "cpp"
+            exec "! ./%<"
+        elseif &filetype == "c"
+            exec "! ./%<"
+        elseif &filetype == "python"
+            exec "call RunPython"
+        elseif &filetype == "java"
+            exec "!java %<"
+        endif
+endfunc
+
+
+map <F5> :call CompileCode()<CR>
+imap <F5> <ESC>:call CompileCode()<CR>
+vmap <F5> <ESC>:call CompileCode()<CR>
+map <F6> :call RunResult()<CR>
