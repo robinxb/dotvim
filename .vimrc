@@ -167,7 +167,7 @@ set guifont=Inconsolata\ for\ Powerline:h13
 func! CompileGcc() "for c
     exec "w"
     let compilecmd="!gcc "
-    let compileflag="-o %< "
+    let compileflag="-o %< -g"
     if search("mpi\.h") != 0
         let compilecmd = "!mpicc "
     endif
@@ -189,7 +189,7 @@ endfunc
 func! CompileGpp() "for c++
     exec "w"
     let compilecmd="!g++ "
-    let compileflag="-o %< "
+    let compileflag="-o %< -g"
     if search("mpi\.h") != 0
         let compilecmd = "!mpic++ "
     endif
