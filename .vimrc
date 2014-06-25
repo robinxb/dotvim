@@ -1,9 +1,8 @@
 set nocompatible
 filetype off
-filetype plugin indent on
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 Bundle 'gmarik/vundle'
 Bundle 'L9'
@@ -20,11 +19,15 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kshenoy/vim-signature'
 Bundle 'majutsushi/tagbar'
+Bundle 'Handlebars'
 "Bundle 'sickill/vim-monokai'
 "Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'nanotech/jellybeans.vim'
 "Bundle 'xolox/vim-lua-inspect'
 "Bundle 'vim-misc'
+
+call vundle#end()
+filetype plugin indent on
 
 "ctags
 let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
