@@ -19,12 +19,12 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kshenoy/vim-signature'
 Bundle 'majutsushi/tagbar'
-Bundle 'Handlebars'
 "Bundle 'sickill/vim-monokai'
 "Bundle 'hukl/Smyck-Color-Scheme'
 Bundle 'nanotech/jellybeans.vim'
 "Bundle 'xolox/vim-lua-inspect'
 "Bundle 'vim-misc'
+Bundle 'mustache/vim-mustache-handlebars'
 
 call vundle#end()
 filetype plugin indent on
